@@ -1,16 +1,23 @@
 import Word from './Word'
 
-const Answers = ({answers = []}) => {
+const Answers = ({ answers = [] }) => {
   // just the top 20 to start...
-  const results = answers.slice(20).map(answer => <Word key={answer} letters={answer} />)
+  const results = answers.slice(0, 100).map((answer) => <Word key={answer} letters={answer} />)
 
   return (
-    <>
-      <h2 className="answers-header">Answers</h2>
-      <div className="answers-words">
-        {results}
-      </div>
-    </>
+    <section className="answer">
+      {answers.length > 0 ? (
+        <>
+          <h2 className="answers-header">{answers.length} possible answers</h2>
+          <div className="answers-words">{results}</div>
+        </>
+      ) : (
+        <>
+          <p>There are no possible solutions.</p>
+          <p>Verify your letters and coloring</p>
+        </>
+      )}
+    </section>
   )
 }
 

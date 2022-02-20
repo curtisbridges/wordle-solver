@@ -20,6 +20,7 @@
 }
 
 .App-header {
+  margin-bottom: 1rem;
 }
 
 .App-footer {
@@ -30,6 +31,7 @@
   display: grid;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
   gap: 1rem;
+  margin-bottom: 2rem;
 }
 
 .row {
@@ -40,11 +42,34 @@
 
 .letter {
   color: var(--color-empty);
-  min-height: 1rem;
-  min-width: 1rem;
+  min-height: 2rem;
+  min-width: 2rem;
   padding: .5rem;
   outline: 1px solid var(--foreground-color);
 }
 
+.answer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.answers-words {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 80%;
+}
+
 .word {
+  background-color: lightgrey;
+  color: black;
+  padding: 0.25rem;
+  margin: 0.25rem;
+  border-radius: 5px;
+}
+
+input[type="text"] {
+  position: absolute;
+  left: -9000px;
+  top: -9000px;
 }

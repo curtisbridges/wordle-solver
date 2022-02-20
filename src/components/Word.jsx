@@ -1,6 +1,6 @@
 const Word = ({letters = ""}) => {
   return (
-    <div className="word">{letters}</div>
+    <span className="word">{letters}</span>
   )
 }
 

@@ -1,27 +1,18 @@
+import Letter from '../model/Letter'
 import Row from './Row'
 
-
-function chunkSubstr(str, size) {
-  const numChunks = Math.ceil(str.length / size)
-  const chunks = new Array(numChunks)
-
-  for (let i = 0, o = 0; i < numChunks; ++i, o += size) {
-    chunks[i] = str.substr(o, size)
+const Board = ({ guesses = [] }) => {
+  if (guesses.length === 0) {
+    guesses = Array.from(Array(5), () => new Letter())
   }
-
-  return chunks
-}
-
-const Board = ({ guesses = '' }) => {
-  const rows = chunkSubstr(String(guesses), 5)
   return (
     <div className="board">
-      <Row word={rows[0]}/>
-      <Row word={rows[1]}/>
-      <Row word={rows[2]}/>
-      <Row word={rows[3]}/>
-      <Row word={rows[4]}/>
-      <Row word={rows[5]}/>
+      <Row letters={guesses[0]}/>
+      <Row letters={guesses[1]}/>
+      <Row letters={guesses[2]}/>
+      <Row letters={guesses[3]}/>
+      <Row letters={guesses[4]}/>
+      <Row letters={guesses[5]}/>
     </div>
   )
 }

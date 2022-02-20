@@ -1,10 +1,10 @@
 :root {
-  --background-color: #282c34;
-  --foreground-color: white;
+  --background-color: #121213;
+  --foreground-color: #d7dadc;
 
-  --color-empty: white;
-  --color-yellow: yellow;
-  --color-green: green;
+  --color-grey: #3a3a3c;
+  --color-yellow: #b59f3b;
+  --color-green: #538d4e;
 }
 
 .App {

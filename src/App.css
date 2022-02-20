@@ -1,0 +1,50 @@
+:root {
+  --background-color: #282c34;
+  --foreground-color: white;
+
+  --color-empty: white;
+  --color-yellow: yellow;
+  --color-green: green;
+}
+
+.App {
+  background-color: var(--background-color);
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: var(--foreground-color);
+}
+
+.App-header {
+}
+
+.App-footer {
+  padding: 2rem;
+}
+
+.board {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: .5rem;
+}
+
+.letter {
+  color: var(--color-empty);
+  min-height: 1rem;
+  min-width: 1rem;
+  padding: .5rem;
+  outline: 1px solid var(--foreground-color);
+}
+
+.word {
+}

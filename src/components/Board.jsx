@@ -6,14 +6,17 @@ const Board = ({ guesses = [] }) => {
     guesses = Array.from(Array(5), () => new Guess())
   }
   return (
-    <div className="board">
+    <section className="center">
+      <h2>Guesses</h2>
+      <div className="board">
         <Row guess={guesses[0]}/>
         <Row guess={guesses[1]}/>
         <Row guess={guesses[2]}/>
         <Row guess={guesses[3]}/>
         <Row guess={guesses[4]}/>
-        <Row guess={guesses[5]}/>
-      </div >
+        <Row guess={guesses[5]} />
+      </div>
+    </section >
   )
 }
 

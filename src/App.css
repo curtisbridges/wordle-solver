@@ -7,24 +7,47 @@
   --color-green: #538d4e;
 }
 
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
 .App {
   background-color: var(--background-color);
-  text-align: center;
-  min-height: 100vh;
+  color: var(--foreground-color);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* min-height: 100vh; */
   font-size: calc(10px + 2vmin);
-  color: var(--foreground-color);
-}
-
-.App-header {
-  margin-bottom: 1rem;
 }
 
 .App-footer {
   padding: 2rem;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+}
+
+h2 {
+  margin-block-start: 0;
+}
+
+@media only screen and (min-width: 600px) {
+  main {
+    max-width: 80%;
+    flex-direction: row;
+    align-items: start;
+  }
+
+  .App-header {
+    margin-bottom: 1rem;
+  }
 }
 
 .board {
@@ -41,6 +64,10 @@
 }
 
 .letter {
+  color: var(--background-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--color-empty);
   min-height: 2rem;
   min-width: 2rem;
@@ -73,4 +100,16 @@ input[type="text"] {
   position: absolute;
   left: -9000px;
   top: -9000px;
+}
+
+.guess {
+  background-color: var(--color-grey);
+}
+
+.match {
+  background-color: var(--color-yellow);
+}
+
+.exact {
+  background-color: var(--color-green);
 }

@@ -1,6 +1,3 @@
-// import Guess from './Guess'
-// import Letter from './Letter'
-
 function hasAllLetters(answer, present) {
   return present.every(function (element) {
     return answer.includes(element)
@@ -51,7 +48,9 @@ export default function eliminate(answers, guesses) {
   const exacts = guesses.map((guess) => guess.exacts())
   const exact = combine(exacts)
 
-  const firstPass = answers.filter(answer => hasExact(answer, exact))
+  if (exact.trim().length > 0) {
+    answers = answers.filter(answer => hasExact(answer, exact))
+  }
 
   guesses.forEach((guess) => {
     guess.letters.forEach((letter) => {
@@ -64,9 +63,15 @@ export default function eliminate(answers, guesses) {
     })
   })
 
-  const results = firstPass.filter((answer) => {
-    return hasAllLetters(answer, present) && !hasAnyLetters(answer, notPresent)
+  if (present.length > 0) {
+    answers = answers.filter((answer) => {
+      return hasAllLetters(answer, present)
+    })
+  }
+
+  answers = answers.filter((answer) => {
+    return !hasAnyLetters(answer, notPresent)
   })
 
-  return results
+  return answers
 }

@@ -8,7 +8,6 @@ import { chunkSubstr } from './util/chunkString'
 import eliminate from './model/eliminator'
 
 import './App.css'
-import useKeypress from './hooks/useKeypress'
 
 function App() {
   const { data } = useFetch('wordle-answers-alphabetical.txt')
@@ -18,19 +17,21 @@ function App() {
 
   useEffect(() => {
     const parsed = chunkSubstr(String(input), 5)
-    setGuesses(parsed.map(str => new Guess(str)))
+    setGuesses(parsed.map((str, index) => new Guess(str, index)))
   }, [input])
+
+  useEffect(() => {
+    const update = eliminate(data, guesses)
+    setAnswers(update)
+  }, [data, guesses])
 
   const handleInput = (e) => {
     setInput(e.target.value.padEnd(30, ' '))
   }
 
-  const handleEnterKey = () => {
-    const update = eliminate(data, guesses)
-    setAnswers(update)
+  const handleMouseClick = (e) => {
+    console.log(e.target)
   }
-
-  useKeypress('Enter', handleEnterKey)
 
   return (
     <div className="App">
@@ -41,8 +42,11 @@ function App() {
       <input type="text" maxLength={30} onChange={handleInput}
         autoFocus onBlur={({ target }) => target.focus()}></input>
 
-      <Board guesses={guesses} />
-      <Answers input={input} answers={answers}/>
+      <main>
+        {/* <Board guesses={guesses} onClick={() => handleMouseClick} /> */}
+        <Board guesses={guesses} />
+        <Answers input={input} answers={answers} />
+      </main>
 
       <footer className="App-footer">
         Copyright Curtis Bridges, 2022

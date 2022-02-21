@@ -5,12 +5,14 @@ import fs from 'fs'
 import path from 'path'
 
 // const answers = ['again', 'bench', 'later', 'silly']
-let answers, guesses
+let answers, guesses, eliminateGuesses, eleminateAnswers
 
 describe('Eliminator function works', () => {
   beforeAll(() => {
     const text = fs.readFileSync(path.resolve(process.cwd(), 'public', 'wordle-answers-alphabetical.txt'), 'utf8')
     answers = text.split('\n')
+    eliminateGuesses = [new Guess('slate'), new Guess('crown'), new Guess('zmgpu')]
+    eleminateAnswers = ['jiffy', 'biddy', 'vivid']
   })
   beforeEach(() => {
     guesses = [new Guess('slate'), new Guess('chart')]
@@ -38,5 +40,11 @@ describe('Eliminator function works', () => {
     const results = eliminate(answers, guesses)
     expect(results.length).toBeLessThan(answers.length)
     expect(results).toEqual(results.filter((answer) => answer.charAt(2) === 'a'))
+  })
+  it('Can pass eliminator guesses', () => {
+    const results = eliminate(answers, eliminateGuesses)
+    console.log(results)
+    expect(results.length).toEqual(eleminateAnswers.length)
+    expect(results).toEqual(expect.arrayContaining(eleminateAnswers))
   })
 })

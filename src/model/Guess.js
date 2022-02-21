@@ -1,9 +1,8 @@
 import Letter from './Letter'
 
 export default class Guess {
-  constructor(word = '', id = 0) {
+  constructor(word = '') {
     this.word = word.padEnd(5, ' ')
-    this.id = id
     this.letters = this.word.split('').map((c) => new Letter(c))
   }
 

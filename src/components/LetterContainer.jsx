@@ -10,8 +10,12 @@ const LetterContainer = ({ letter }) => {
   const exactClass = `${letter.isExact ? 'exact' : ''}`
   const colorClassNames = `letter ${emptyClass} ${matchClass} ${exactClass}`.trim()
 
+  const handleClick = (letter) => {
+    console.log(letter)
+  }
+
   return (
-    <div className={`${colorClassNames}`}>{letter.toString()}</div>
+    <div className={`${colorClassNames}`} onClick={() => handleClick(letter)}>{letter.toString()}</div>
   )
 }
 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Guess from './model/Guess'
 import Answers from './components/Answers'
 import Board from './components/Board'
@@ -17,7 +17,7 @@ function App() {
 
   useEffect(() => {
     const parsed = chunkSubstr(String(input), 5)
-    setGuesses(parsed.map((str, index) => new Guess(str, index)))
+    setGuesses(parsed.map((str) => new Guess(str)))
   }, [input])
 
   useEffect(() => {
@@ -29,27 +29,22 @@ function App() {
     setInput(e.target.value.padEnd(30, ' '))
   }
 
-  const handleMouseClick = (e) => {
-    console.log(e.target)
-  }
-
   return (
     <div className="App">
       <header className="App-header">
         <h1>Wordle Solver</h1>
       </header>
 
-      <input type="text" maxLength={30} onChange={handleInput}
+      <input type="text" value="" maxLength={30} onChange={handleInput}
         autoFocus onBlur={({ target }) => target.focus()}></input>
 
       <main>
-        {/* <Board guesses={guesses} onClick={() => handleMouseClick} /> */}
         <Board guesses={guesses} />
         <Answers input={input} answers={answers} />
       </main>
 
       <footer className="App-footer">
-        Copyright Curtis Bridges, 2022
+        © Curtis Bridges, 2022
       </footer>
     </div>
   );

@@ -9,7 +9,7 @@ describe('Letters class works', () => {
   it('can be constructed', () => {
     expect(a).not.toBeNull()
     expect(a.isMatch).toBe(false)
-    expect(a.isExactLocation).toBe(false)
+    expect(a.isExact).toBe(false)
   })
   it('has the correct letter value', () => {
     expect(a.letter).toEqual('a')
@@ -22,7 +22,7 @@ describe('Letters class works', () => {
     expect(a.isMatch).toEqual(true)
   })
   it('can have exact location toggled', () => {
-    a.isExactLocation = true
-    expect(a.isExactLocation).toEqual(true)
+    a.isExact = true
+    expect(a.isExact).toEqual(true)
   })
 })

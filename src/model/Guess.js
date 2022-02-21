@@ -1,9 +1,10 @@
 import Letter from './Letter'
 
 export default class Guess {
-  constructor(word = '') {
+  constructor(word, row = 0) {
     this.word = word.padEnd(5, ' ')
-    this.letters = this.word.split('').map((c) => new Letter(c))
+    this.row = row
+    this.letters = this.word.split('').map((c, index) => new Letter(c, row, index))
   }
 
   at(position) {
@@ -16,19 +17,16 @@ export default class Guess {
 
   matches() {
     return this.letters
-      .map((letter, index) => {
-        return { index, isMatch: letter.isMatch }
-      })
-      .filter( letter => letter.isMatch)
-      .map(result => result.index)
+      .filter(letter => letter.isMatch)
+      .map(letter => letter.letter)
   }
 
   exact(position) {
-    this.letters[position].isExactLocation = true
+    this.letters[position].isExact = true
   }
 
   exacts() {
-    return this.letters.map(letter => letter.isExactLocation ? letter.toString() : ' ')
+    return this.letters.map(letter => letter.isExact ? letter.toString() : ' ')
   }
 
   toString() {

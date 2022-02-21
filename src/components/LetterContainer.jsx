@@ -1,21 +1,26 @@
-import Letter from '../model/Letter.js'
+import { useState } from 'react'
 
-const LetterContainer = ({ letter }) => {
-  if (!letter) {
-    letter = new Letter()
-  }
+const LetterContainer = ({ letter, handleClick }) => {
+  // const [value, setValue] = useState(letter.toString())
+  const [isMatch, setIsMatch] = useState(letter.isMatch)
+  const [isExact, setIsExact] = useState(letter.isExact)
 
-  const emptyClass = `${letter.toString() !== ' ' ? 'guess' : ''}`
-  const matchClass = `${letter.isMatch ? 'match' : ''}`
-  const exactClass = `${letter.isExact ? 'exact' : ''}`
+  const hasValue = () => letter.toString() !== ' '
+
+  const emptyClass = `${hasValue() !== ' ' ? 'guess' : ''}`
+  const matchClass = `${isMatch && hasValue() ? 'match' : ''}`
+  const exactClass = `${isExact && hasValue() ? 'exact' : ''}`
   const colorClassNames = `letter ${emptyClass} ${matchClass} ${exactClass}`.trim()
 
-  const handleClick = (letter) => {
-    console.log(letter)
+  const letterClick = () => {
+    handleClick(letter)
+
+    setIsMatch(letter.isMatch)
+    setIsExact(letter.isExact)
   }
 
   return (
-    <div className={`${colorClassNames}`} onClick={() => handleClick(letter)}>{letter.toString()}</div>
+    <div className={`${colorClassNames}`} onClick={letterClick}>{letter.toString()}</div>
   )
 }
 

@@ -43,7 +43,6 @@ describe('Eliminator function works', () => {
   })
   it('Can pass eliminator guesses', () => {
     const results = eliminate(answers, eliminateGuesses)
-    console.log(results)
     expect(results.length).toEqual(eleminateAnswers.length)
     expect(results).toEqual(expect.arrayContaining(eleminateAnswers))
   })

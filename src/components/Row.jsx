@@ -1,13 +1,17 @@
-import Letter from './Letter'
+import LetterContainer from './LetterContainer'
+import Guess from '../model/Guess'
 
-const Row = ({ letters }) => {
+const Row = ({ guess }) => {
+  if (!guess) {
+    guess = new Guess()
+  }
   return (
     <div className="row">
-      <Letter letter={letters[0]} />
-      <Letter letter={letters[1]} />
-      <Letter letter={letters[2]} />
-      <Letter letter={letters[3]} />
-      <Letter letter={letters[4]} />
+      <LetterContainer letter={guess.at(0)} />
+      <LetterContainer letter={guess.at(1)} />
+      <LetterContainer letter={guess.at(2)} />
+      <LetterContainer letter={guess.at(3)} />
+      <LetterContainer letter={guess.at(4)} />
     </div>
   )
 }

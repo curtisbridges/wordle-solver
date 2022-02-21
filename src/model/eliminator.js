@@ -1,8 +1,14 @@
 // import Guess from './Guess'
 // import Letter from './Letter'
 
-function hasLetters(answer, present) {
+function hasAllLetters(answer, present) {
   return present.every(function (element) {
+    return answer.includes(element)
+  })
+}
+
+function hasAnyLetters(answer, present) {
+  return present.some(function (element) {
     return answer.includes(element)
   })
 }
@@ -24,8 +30,6 @@ function combine(exacts) {
 function hasExact(answer, exact) {
   if (exact.trim().length === 0)
     return true
-  else
-    console.log(`testing for exact matching`, answer, exact)
 
   for (let i = 0; i < 5; i++) {
     if (exact.at(i) !== ' ') {
@@ -34,7 +38,7 @@ function hasExact(answer, exact) {
       }
     }
   }
-console.log(`exact match`, answer)
+
   return true
 }
 
@@ -60,7 +64,9 @@ export default function eliminate(answers, guesses) {
     })
   })
 
-  return firstPass.filter((answer) => {
-    return hasLetters(answer, present) && !hasLetters(answer, notPresent)
+  const results = firstPass.filter((answer) => {
+    return hasAllLetters(answer, present) && !hasAnyLetters(answer, notPresent)
   })
+
+  return results
 }

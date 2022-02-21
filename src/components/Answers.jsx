@@ -1,6 +1,6 @@
 import Word from './Word'
 
-const Answers = ({ answers = [] }) => {
+const Answers = ({ input, answers = [] }) => {
   // just the top 20 to start...
   const results = answers.slice(0, 100).map((answer) => <Word key={answer} letters={answer} />)
 
@@ -12,10 +12,12 @@ const Answers = ({ answers = [] }) => {
           <div className="answers-words">{results}</div>
         </>
       ) : (
-        <>
-          <p>There are no possible solutions.</p>
-          <p>Verify your letters and coloring</p>
-        </>
+          input.length > 0 ? (
+            <>
+              <p>There are no possible solutions.</p>
+              <p>Verify your letters and coloring</p>
+            </>
+          ) : null
       )}
     </section>
   )

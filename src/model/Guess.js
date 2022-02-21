@@ -6,6 +6,10 @@ export default class Guess {
     this.letters = this.word.split('').map((c) => new Letter(c))
   }
 
+  at(position) {
+    return this.letters[position]
+  }
+
   match(position) {
     this.letters[position].isMatch = true
   }

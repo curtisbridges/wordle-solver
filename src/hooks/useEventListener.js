@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-export const useKeyListener = (handler, element = window) => {
+export const useEventListener = (eventName, handler, element = window) => {
   // Create a ref that stores handler
   const savedHandler = useRef()
   // Update ref.current value if handler changes.
@@ -19,12 +19,12 @@ export const useKeyListener = (handler, element = window) => {
       // Create event listener that calls handler function stored in ref
       const eventListener = (event) => savedHandler.current(event)
       // Add event listener
-      element.addEventListener('keyup', eventListener)
+      element.addEventListener(eventName, eventListener)
       // Remove event listener on cleanup
       return () => {
-        element.removeEventListener('keyup', eventListener)
+        element.removeEventListener(eventName, eventListener)
       }
     },
-    [element] // Re-run if eventName or element changes
+    [eventName, element] // Re-run if eventName or element changes
   )
 }

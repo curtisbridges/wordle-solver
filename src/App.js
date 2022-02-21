@@ -5,13 +5,10 @@ import Board from './components/Board'
 
 import { useFetch } from './hooks/useFetch'
 import { chunkSubstr } from './util/chunkString'
+import eliminate from './model/eliminator'
 
 import './App.css'
-
-const updateAnswers = (guesses, answers) => {
-
-}
-
+import useKeypress from './hooks/useKeypress'
 
 function App() {
   const { data } = useFetch('wordle-answers-alphabetical.txt')
@@ -20,17 +17,20 @@ function App() {
   const [answers, setAnswers] = useState([])
 
   useEffect(() => {
-    const parsed = chunkSubstr(String(guesses), 5)
-    setGuesses(parsed.forEach( (str) => Guess(str)))
+    const parsed = chunkSubstr(String(input), 5)
+    setGuesses(parsed.map(str => new Guess(str)))
   }, [input])
-
-  useEffect(() => {
-    setAnswers(data)
-  }, [data])
 
   const handleInput = (e) => {
     setInput(e.target.value.padEnd(30, ' '))
   }
+
+  const handleEnterKey = () => {
+    const update = eliminate(data, guesses)
+    setAnswers(update)
+  }
+
+  useKeypress('Enter', handleEnterKey)
 
   return (
     <div className="App">
@@ -42,7 +42,7 @@ function App() {
         autoFocus onBlur={({ target }) => target.focus()}></input>
 
       <Board guesses={guesses} />
-      <Answers answers={answers}/>
+      <Answers input={input} answers={answers}/>
 
       <footer className="App-footer">
         Copyright Curtis Bridges, 2022

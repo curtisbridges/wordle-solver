@@ -46,6 +46,7 @@
   min-width: 2rem;
   padding: .5rem;
   outline: 1px solid var(--foreground-color);
+  cursor: pointer;
 }
 
 .answer {
